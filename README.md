@@ -10,7 +10,7 @@ In this session, i covered:
 - Overview of the technologies and tools to be used.
 - Basic understanding of how e-commerce website is build.
 
-## Milestone 2: Setup Frontend and Backend. Create login page in frontend
+## Milestone 2: Project Setup and Login Page
 
 In this session i have covered:
 

@@ -4,8 +4,18 @@ This project is about building an e-commerce platform step by step. It helps me 
 
 ## Milestone 1: Project Overview
 
-In this session, we covered:
+In this session, i covered:
 - Introduction to the project structure.
 - Setting up the development environment.
 - Overview of the technologies and tools to be used.
 - Basic understanding of how e-commerce website is build.
+
+## Milestone 2: Setup Frontend and Backend. Create login page in frontend
+
+In this session i have covered:
+
+- created seperate folders for Frontend and Backend.
+- installed vite using react in Frontend folder.
+- installed Tailwind css.
+- created login page using react and Tailwind css.
+- In backend folder initialized Node.js.

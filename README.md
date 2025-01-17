@@ -19,3 +19,12 @@ In this session i have covered:
 - installed Tailwind css.
 - created login page using react and Tailwind css.
 - In backend folder initialized Node.js.
+
+## Milestone 3: Project Setup for Backend
+
+In this session i have covered:
+- created the required folders for backend.
+- installed mongoose, express, dotenv and nodemon.
+- created folder named utils and files Apierror.js, AsyncHandler.js in it for managing the error.
+- Connected DATABASE to my project.
+- Created a cluster in MONGODB Atlas.

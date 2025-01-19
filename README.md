@@ -25,6 +25,14 @@ In this session i have covered:
 In this session i have covered:
 - created the required folders for backend.
 - installed mongoose, express, dotenv and nodemon.
-- created folder named utils and files Apierror.js, AsyncHandler.js in it for managing the error.
+- created folder named utils and file AsyncHandler.js in it.
 - Connected DATABASE to my project.
 - Created a cluster in MONGODB Atlas.
+
+## Milestone 4: Created user model and controller. Configured multer and cloudinary
+
+In this session i have covered:
+- Created user model and controller.
+- Configured multer and cloudinary.
+- In controller i have created loginUser, registerUser and uploadAvatar function.
+- Created middleware for multer.

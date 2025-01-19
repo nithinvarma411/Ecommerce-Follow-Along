@@ -29,7 +29,7 @@ In this session i have covered:
 - Connected DATABASE to my project.
 - Created a cluster in MONGODB Atlas.
 
-## Milestone 4: Created user model and controller. Configured multer and cloudinary
+## Milestone 4: Creating User Model and Controller
 
 In this session i have covered:
 - Created user model and controller.

@@ -2,13 +2,14 @@ import { useState } from 'react'
 
 
 function Login() {
-    const [userName, setUserName] = useState('')
+    const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [mobileNumber, setMobileNumber] = useState('')
 
     const handleSubmit = (e) => {
         e.preventDefault() 
-        if (userName && password) {
-            console.log(userName, password)
+        if (email && password && mobileNumber) {
+            console.log(email, password)
         }
     }
 
@@ -19,18 +20,36 @@ function Login() {
                 <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2"
-                         htmlFor="username"
-                         value={userName}
-                         onChange={(e) => setUserName(e.target.value)}>
-                        Username
+                         htmlFor="email"
+                         value={email}
+                         onChange={(e) => setEmail(e.target.value)}>
+                         Email
                         </label>
                         <input
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="username"
+                        className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                        id="email"
                         type="text"
-                        placeholder="Username"
+                        placeholder="Email"
+                        required
                         />
                     </div>
+
+                    <div className="mb-4">
+                        <label className="block text-gray-700 text-sm font-bold mb-2"
+                         htmlFor="Mobile Number"
+                         value={mobileNumber}
+                         onChange={(e) => setMobileNumber(e.target.value)}>
+                         Mobile Number
+                        </label>
+                        <input
+                        className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
+                        id="Mobile Number"
+                        type="number"
+                        placeholder="Mobile Number"
+                        required
+                        />
+                    </div>
+
                     <div className="mb-6">
                         <label className="block text-gray-700 text-sm font-bold mb-2" 
                          htmlFor="password"
@@ -39,10 +58,11 @@ function Login() {
                         Password
                         </label>
                         <input
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                        className="border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none"
                         id="password"
                         type="password"
                         placeholder="******************"
+                        required
                         />
                     </div>
                     <div className="flex items-center justify-between">

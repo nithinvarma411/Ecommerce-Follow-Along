@@ -36,3 +36,11 @@ In this session i have covered:
 - Configured multer and cloudinary.
 - In controller i have created loginUser, registerUser and uploadAvatar function.
 - Created middleware for multer.
+
+## Milestone 5: Creating the Signup page
+
+In this session i have covered:
+- Created signup page.
+- Used tailwind css.
+- Used regex for validating email and mobile number.
+- Created routes for checking signup page functionality

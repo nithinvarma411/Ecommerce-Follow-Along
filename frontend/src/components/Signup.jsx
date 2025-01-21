@@ -1,32 +1,63 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fullname, setFullname] = useState("");
-  const [mobileNumber, setMobileNumber] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (
-      !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email) ||
-      !/^(?:\+91|91|0)?[6-9]\d{9}$/.test(mobileNumber)
-    ) {
-      alert("Please enter a valid email and mobile number.");
-      return;
-    }
-
-    if (password.length < 6) {
-      alert("Password must be at least 6 characters long.");
-      return;
-    }
-
     
-    navigate("/home");
+    try {
+      if (
+        !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email) ||
+        !/^(?:\+91|91|0)?[6-9]\d{9}$/.test(phoneNumber)
+      ) {
+        alert("Please enter a valid email and mobile number.");
+        return;
+      }
+  
+      if (password.length < 6) {
+        alert("Password must be at least 6 characters long.");
+        return;
+      }
+  
+      const userData = {
+        email,
+        password,
+        fullname,
+        phoneNumber,
+      }
+      console.log("userData",userData)
+      const response = await axios.post('http://localhost:5000/api/v1/users/registerUser', userData,
+      {
+        headers: {
+            'Content-Type': 'application/json',
+              
+        },
+        withCredentials: true,
+    });
+    
+      console.log("response",response);
+      
+
+      if (response.status === 200) {
+        alert("User registered successfully");
+        navigate("/home");
+      } else {
+        alert("Failed registering user");
+        console.error(response.data.message);
+      }
+    } catch (error) {
+      console.error("Error in signup", error.message);
+      alert(error);
+    }
   };
 
   return (
@@ -88,10 +119,10 @@ function Signup() {
             <input
               className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
               id="mobileNumber"
-              type="number"
+              type="tel"
               placeholder="Mobile Number"
-              value={mobileNumber}
-              onChange={(e) => setMobileNumber(e.target.value)}
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
               required
             />
           </div>

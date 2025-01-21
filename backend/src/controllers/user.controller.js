@@ -4,12 +4,14 @@ import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
 const registerUser = asyncHandler(async (req, res, next) => {
     const {email, fullname, password, phoneNumber} = req.body
+    console.log(email, fullname, password, phoneNumber);
+    
 
     if ([fullname, email, password, phoneNumber].some((field) => field?.trim() === "")) {
         return res.status(400).send({message: "ALL FEILDS ARE REQUIRED"})
     }
 
-    const existedUser = User.findOne({
+    const existedUser = await User.findOne({
         $or: [{email}, {phoneNumber}]
     })
 

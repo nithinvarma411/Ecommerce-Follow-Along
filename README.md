@@ -44,3 +44,11 @@ In this session i have covered:
 - Used tailwind css.
 - Used regex for validating email and mobile number.
 - Created routes for checking signup page functionality
+
+##  Milestone 6: Connected Frontend to Backend
+
+In this session i have covered:
+- Connected frontend to backend.
+- Created routes for backend connection.
+- Used cors for cross-origin resource sharing.
+- Stored user data in database from frontend.

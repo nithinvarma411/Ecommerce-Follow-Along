@@ -34,7 +34,7 @@ In this session i have covered:
 In this session i have covered:
 - Created user model and controller.
 - Configured multer and cloudinary.
-- In controller i have created loginUser, registerUser and uploadAvatar function.
+- In controller i have created registerUser and uploadAvatar function.
 - Created middleware for multer.
 
 ## Milestone 5: Creating the Signup page
@@ -52,3 +52,11 @@ In this session i have covered:
 - Created routes for backend connection.
 - Used cors for cross-origin resource sharing.
 - Stored user data in database from frontend.
+
+## Milestone 7: created controller for login page
+
+In this session i have covered:
+- Created login page controller.
+- Created routes for login page in backend.
+- Used bcrypt for comparing hashed password.
+- handled login page functionality.

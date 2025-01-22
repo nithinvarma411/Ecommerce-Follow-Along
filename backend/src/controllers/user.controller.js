@@ -7,7 +7,7 @@ const registerUser = asyncHandler(async (req, res, next) => {
     console.log(email, fullname, password, phoneNumber);
     
 
-    if ([fullname, email, password, phoneNumber].some((field) => field?.trim() === "")) {
+    if ([fullname, email, password].some((field) => field?.trim() === "")) {
         return res.status(400).send({message: "ALL FEILDS ARE REQUIRED"})
     }
 
@@ -37,33 +37,40 @@ const registerUser = asyncHandler(async (req, res, next) => {
 })
 
 const loginUser = asyncHandler(async (req, res) => {
-    const {email, password, phoneNumber} = req.body
+    const { email, password, phoneNumber } = req.body;
 
-    if (!email && !phoneNumber) {
-        res.status(404).send({message: "EMAIL OR MOBILE NUMBER IS REQUIRED"})
+    if ([email, password].some((field) => field.trim() === "")) {
+        return res.status(400).send({ message: "EMAIL AND PHONE NUMBER ARE REQUIRED" });
     }
 
-    const checkUser = await User.findOne({email})
+    const checkUser = await User.findOne({
+        $or: [{ email }, { phoneNumber }]
+    });
 
-    if (checkUser.phoneNumber != phoneNumber) {
-        res.status(404).send({message: "PHONE NUMBER MISMATCH"})
+    if (!checkUser) {
+        return res.status(404).send({ message: "USER DOES NOT EXIST" });
     }
 
-    const isPasswordCorrect = await checkUser.isPasswordCorrect(password)
+    if (checkUser.email !== email || checkUser.phoneNumber !== phoneNumber) {
+        return res.status(400).send({ message: "EMAIL AND PHONE NUMBER DO NOT MATCH" });
+    }
+
+    const isPasswordCorrect = await checkUser.isPasswordCorrect(password);
 
     if (!isPasswordCorrect) {
-        res.status(404).send({message: "INVALID PASSWORD"})
+        return res.status(401).send({ message: "INVALID PASSWORD" });
     }
 
-    const loggedInUser = await User.findById(checkUser._id).select("-password")
+    const loggedInUser = await User.findById(checkUser._id).select("-password");
 
     res.status(200).send({
-        message: "USER REGISTERED SUCCESSFULLY",
+        message: "USER LOGGED IN SUCCESSFULLY",
         data: {
             user: loggedInUser
         }
-    })
-})
+    });
+});
+
 
 const uploadAvatar = asyncHandler(async (req, res) => {
     const userId = req.params.id;

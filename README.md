@@ -60,3 +60,11 @@ In this session i have covered:
 - Created routes for login page in backend.
 - Used bcrypt for comparing hashed password.
 - handled login page functionality.
+
+## Milestone 8: Created form for adding products
+
+In this session i have covered:
+- Created form for adding products.
+- Uploading images of products.
+- Created routes for adding products.
+- In "/ProductForm" route you can see the form for adding products.

@@ -27,7 +27,7 @@ const ProductForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form Data Submitted:", formData);
-  };
+  }
 
   return (
     <div className="bg-gray-500 min-h-screen flex items-center justify-center">

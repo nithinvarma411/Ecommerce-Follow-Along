@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import cors from 'cors'
 import connectDB from './db/db.js'
 import userRoutes from './routes/user.routes.js'
+import productRoutes from './routes/product.routes.js'
 
 dotenv.config({path: './.env'});
 const app = express()
@@ -28,3 +29,4 @@ const corsoptions = {
 app.use(cors(corsoptions));
 
 app.use('/api/v1/users', userRoutes)
+app.use('/api/v1/products', productRoutes)

@@ -68,3 +68,12 @@ In this session i have covered:
 - Uploading images of products.
 - Created routes for adding products.
 - In "/ProductForm" route you can see the form for adding products.
+
+## Milestone 9: created a mongoose schema for products and created an endpoint to store the product details
+
+In this session i have covered:
+- Created a mongoose schema for products.
+- Created a controller and route for adding products.
+- Uploaded images of products in cloudinary.
+- Stored product details in database including image url.
+- Used multer as middleware for uploading images.

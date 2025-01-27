@@ -61,7 +61,7 @@ In this session i have covered:
 - Used bcrypt for comparing hashed password.
 - handled login page functionality.
 
-## Milestone 8: Created form for adding products
+## Milestone 9: Created form for adding products
 
 In this session i have covered:
 - Created form for adding products.
@@ -69,7 +69,7 @@ In this session i have covered:
 - Created routes for adding products.
 - In "/ProductForm" route you can see the form for adding products.
 
-## Milestone 9: created a mongoose schema for products and created an endpoint to store the product details
+## Milestone 10: created a mongoose schema for products and created an endpoint to store the product details
 
 In this session i have covered:
 - Created a mongoose schema for products.

@@ -59,5 +59,10 @@ const createProduct = asyncHandler(async (req, res) => {
     }
 });
 
+const sendAllProducts = asyncHandler(async (req, res) => {
+    const products = await Product.find();
+    return res.status(200).send({ message: "ALL PRODUCTS", products });
+});
 
-export { createProduct };
+
+export { createProduct, sendAllProducts };

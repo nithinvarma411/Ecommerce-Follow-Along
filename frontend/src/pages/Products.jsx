@@ -1,5 +1,4 @@
-function Products({ name, image, description, actualPrice, sellingPrice }) {
-  const sizes = ["6", "7", "8", "9", "10", "11", "12"]; // Example sizes, you can modify this list as needed
+function Products({ name, image, description, actualPrice, discountPrice, availableSizes }) {
 
   return (
     <div className="bg-gray-300 p-4 rounded-lg flex flex-col justify-between">
@@ -14,7 +13,7 @@ function Products({ name, image, description, actualPrice, sellingPrice }) {
       </div>
       <div className="w-full">
         <p className="text-lg font-bold my-2">Original Price: ${actualPrice}</p>
-        <p className="text-lg font-bold my-2">Selling Price: ${sellingPrice}</p>
+        <p className="text-lg font-bold my-2">Selling Price: ${discountPrice}</p>
         <div className="my-2">
           <label htmlFor="size" className="block text-sm font-semibold mb-1">
             Select Size:
@@ -23,7 +22,7 @@ function Products({ name, image, description, actualPrice, sellingPrice }) {
             id="size"
             className="w-full p-2 rounded-md border border-gray-400"
           >
-            {sizes.map((size, index) => (
+            {availableSizes.map((size, index) => (
               <option key={index} value={size}>
                 {size}
               </option>

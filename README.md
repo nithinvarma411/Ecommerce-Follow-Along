@@ -77,3 +77,12 @@ In this session i have covered:
 - Uploaded images of products in cloudinary.
 - Stored product details in database including image url.
 - Used multer as middleware for uploading images.
+
+## Milestone 11: Created a route and controller for saving and displaying all products
+
+In this session i have covered:
+- Created a route and controller for saving all products
+- Created a route and controller for displaying all products
+- Used mongoose to get all products from database.
+- Used cloudinary to save images of products.
+- Used multer as a middleware.

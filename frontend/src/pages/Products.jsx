@@ -10,8 +10,22 @@ function Products({ _id, name, image, description, actualPrice, discountPrice, a
       await axios.put(`http://localhost:5000/api/v1/products/edit/${_id}`, editedProduct);
       alert("Product updated successfully!");
       setIsEditing(false);
+      window.location.reload(); // Reload to reflect changes
     } catch (error) {
       console.error("Error updating product:", error);
+    }
+  };
+
+  const handleDelete = async () => {
+    if (!window.confirm("Are you sure you want to delete this product?")) return;
+
+    try {
+      await axios.delete(`http://localhost:5000/api/v1/products/delete/${_id}`);
+      alert("Product deleted successfully!");
+      window.location.reload(); // Reload to reflect changes
+    } catch (error) {
+      console.error("Error deleting product:", error);
+      alert("Failed to delete product");
     }
   };
 
@@ -34,7 +48,8 @@ function Products({ _id, name, image, description, actualPrice, discountPrice, a
           <p className="text-base opacity-50 my-2">{description}</p>
           <p className="text-lg font-bold my-2">Original Price: ${actualPrice}</p>
           <p className="text-lg font-bold my-2">Selling Price: ${discountPrice}</p>
-          <button onClick={() => setIsEditing(true)} className="w-full text-white px-4 py-2 rounded-md bg-red-600">EDIT</button>
+          <button onClick={() => setIsEditing(true)} className="w-full text-white px-4 py-2 rounded-md bg-blue-600">EDIT</button>
+          <button onClick={handleDelete} className="w-full text-white px-4 py-2 rounded-md bg-red-600 mt-2">DELETE</button>
         </>
       )}
     </div>

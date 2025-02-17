@@ -86,3 +86,17 @@ In this session i have covered:
 - Used mongoose to get all products from database.
 - Used cloudinary to save images of products.
 - Used multer as a middleware.
+
+## Milestone 13: Created a route and controller for saving and editing all products
+
+In this session i have covered:
+- Created a route and controller for editing all products in backend
+- created an edit button in frontend and added the edit functionality
+- updated the details in mongodb also
+
+## Milestone 14: Created a route and controller for deleting all products
+
+In this session i have covered:
+- Created a route and controller for deleting all products in backend
+- created a delete button in frontend and added the delete functionality
+- deleted the details in mongodb also

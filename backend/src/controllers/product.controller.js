@@ -64,5 +64,18 @@ const sendAllProducts = asyncHandler(async (req, res) => {
     return res.status(200).send({ message: "ALL PRODUCTS", products });
 });
 
+const editProducts = asyncHandler(async (req, res) => {
+    try {
+        const { name, image, description, actualPrice, discountPrice, availableSizes } = req.body;
+        const updatedProduct = await Product.findByIdAndUpdate(
+          req.params.id,
+          { name, image, description, actualPrice, discountPrice, availableSizes },
+          { new: true }
+        );
+        res.json({ message: "Product updated", updatedProduct });
+      } catch (error) {
+        res.status(500).json({ message: "Error updating product" });
+      }
+});
 
-export { createProduct, sendAllProducts };
+export { createProduct, sendAllProducts, editProducts };

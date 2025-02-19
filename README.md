@@ -100,3 +100,11 @@ In this session i have covered:
 - Created a route and controller for deleting all products in backend
 - created a delete button in frontend and added the delete functionality
 - deleted the details in mongodb also
+
+## Milestone 15: Create Navigation Bar
+
+In this session i have covered:
+- Created a navigation bar
+- created routes for frontend navigation
+- connect frontend and backend for displaying products
+- Improved css for home page

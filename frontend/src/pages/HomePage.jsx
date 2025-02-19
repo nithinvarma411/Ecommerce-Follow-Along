@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Products from "../components/Products";
 import axios from "axios";
+import { Product } from './../../../backend/src/models/Product.model';
 
 const HomePage = () => {
     const [productDetails, setProductDetails] = useState([]);
@@ -34,11 +35,11 @@ const HomePage = () => {
       <nav className="container mx-auto flex justify-between items-center py-4 px-4">
         <div className="text-2xl font-bold">ShoeStore</div>
         <ul className="hidden md:flex space-x-6">
-          <li className="hover:text-gray-500 cursor-pointer">Home</li>
-          <li className="hover:text-gray-500 cursor-pointer">Shop</li>
-          <li className="hover:text-gray-500 cursor-pointer">About</li>
-          <li className="hover:text-gray-500 cursor-pointer">Contact</li>
-          <li className="hover:text-gray-500 cursor-pointer" to="/myproducts">My Products</li>
+          <li className="hover:text-gray-500 cursor-pointer" to="/HomePage">Home</li>
+          <li className="hover:text-gray-500 cursor-pointer" to="/shop">Shop</li>
+          <li className="hover:text-gray-500 cursor-pointer" to="/ProductForm">Add Products</li>
+          <li className="hover:text-gray-500 cursor-pointer" to="/cart">Cart</li>
+          <li className="hover:text-gray-500 cursor-pointer" to="/MyProductsPage">My Products</li>
         </ul>
         <div className="flex space-x-4">
           <button className="border border-gray-300 px-4 py-2 rounded hover:bg-gray-100">

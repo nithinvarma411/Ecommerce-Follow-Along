@@ -32,4 +32,4 @@ const corsoptions = {
 app.use(cors(corsoptions));
 
 app.use('/api/v1/users', userRoutes)
-app.use('/api/v1/products', verifyJWT, productRoutes)
+app.use('/api/v1/products', productRoutes)

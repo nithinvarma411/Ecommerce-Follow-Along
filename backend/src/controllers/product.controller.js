@@ -48,6 +48,7 @@ const createProduct = asyncHandler(async (req, res) => {
         discountPrice,
         image,
         availableSizes,
+        user: req.user._id
     });
 
     try {
@@ -59,16 +60,13 @@ const createProduct = asyncHandler(async (req, res) => {
     }
 });
 
-const sendAllProducts = asyncHandler(async (req, res) => {
-    const products = await Product.find();
-    return res.status(200).send({ message: "ALL PRODUCTS", products });
-});
-
 const getMyProducts = async (req, res) => {
     try {
       const products = await Product.find({ user: req.user._id });
+      console.log("products", req.user._id);
       res.json(products);
     } catch (error) {
+      console.error("Error fetching user products", error);
       res.status(500).json({ message: "Error fetching user products", error });
     }
   };
@@ -106,4 +104,21 @@ const getAllProducts = asyncHandler(async (req, res) => {
     }
 });
 
-export { createProduct, sendAllProducts, editProducts, deleteProduct, getMyProducts, getAllProducts };
+const addToCart = asyncHandler(async (req, res) => {
+    try {
+        const { productId, size } = req.body;
+        const product = await Product.findById(req.params.id);
+        if (!product) {
+            return res.status(404).json({ message: "Product not found" });
+        }
+        const updatedProduct = await Product.findByIdAndUpdate(
+            productId,
+            { $push: { cart: { size, quantity: 1 } } },
+            { new: true }
+        );
+        res.status(200).json({ message: "Product added to cart", product: updatedProduct });
+    } catch (error) {
+        res.status(500).json({ message: "Error adding product to cart", error });
+    }
+
+export { createProduct, editProducts, deleteProduct, getMyProducts, getAllProducts };

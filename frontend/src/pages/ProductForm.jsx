@@ -59,9 +59,11 @@ const ProductForm = ({ onProductCreated }) => {
     data.append("availableSizes", JSON.stringify(formData.availableSizes));
 
     try {
+      const token = localStorage.getItem("accessToken");
       const res = await axios.post('http://localhost:5000/api/v1/products/createProduct', data, {
         headers: {
           'Content-Type': 'multipart/form-data',
+          'Authorization': `Bearer ${token}`
         },
       });
 

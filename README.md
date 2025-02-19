@@ -108,3 +108,11 @@ In this session i have covered:
 - created routes for frontend navigation
 - connect frontend and backend for displaying products
 - Improved css for home page
+
+## Milestone 16: created a new page which will display product data
+
+In this session i have covered:
+- Created a new page which will display product data
+- added add to cart button
+- created routes for displaying product data
+- connected backend to frontend for displaying product data in frontend

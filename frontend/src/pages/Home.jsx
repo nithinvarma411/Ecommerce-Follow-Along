@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Products from "../pages/Products";
+import Products from "../components/Products";
 import axios from "axios";
 
 function Home() {

@@ -1,9 +1,11 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
+import cookieParser from 'cookie-parser'
 import connectDB from './db/db.js'
 import userRoutes from './routes/user.routes.js'
 import productRoutes from './routes/product.routes.js'
+import { verifyJWT } from './middlewares/auth.middleware.js'
 
 dotenv.config({path: './.env'});
 const app = express()
@@ -20,6 +22,7 @@ connectDB()
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 const corsoptions = {
     origin: 'http://localhost:5173',
@@ -29,4 +32,4 @@ const corsoptions = {
 app.use(cors(corsoptions));
 
 app.use('/api/v1/users', userRoutes)
-app.use('/api/v1/products', productRoutes)
+app.use('/api/v1/products', verifyJWT, productRoutes)

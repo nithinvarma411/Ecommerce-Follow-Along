@@ -64,6 +64,15 @@ const sendAllProducts = asyncHandler(async (req, res) => {
     return res.status(200).send({ message: "ALL PRODUCTS", products });
 });
 
+const getMyProducts = async (req, res) => {
+    try {
+      const products = await Product.find({ user: req.user._id });
+      res.json(products);
+    } catch (error) {
+      res.status(500).json({ message: "Error fetching user products", error });
+    }
+  };
+
 const editProducts = asyncHandler(async (req, res) => {
     try {
         const { name, image, description, actualPrice, discountPrice, availableSizes } = req.body;
@@ -88,4 +97,13 @@ const deleteProduct = asyncHandler(async (req, res) => {
       }
 });
 
-export { createProduct, sendAllProducts, editProducts, deleteProduct };
+const getAllProducts = asyncHandler(async (req, res) => {
+    try {
+        const products = await Product.find();
+        res.status(200).json({ message: "ALL PRODUCTS", products });
+    } catch (error) {
+        res.status(500).json({ message: "Error fetching all products", error });
+    }
+});
+
+export { createProduct, sendAllProducts, editProducts, deleteProduct, getMyProducts, getAllProducts };

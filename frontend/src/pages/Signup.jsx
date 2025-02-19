@@ -12,8 +12,7 @@ function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    
+  
     try {
       if (
         !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email) ||
@@ -33,32 +32,38 @@ function Signup() {
         password,
         fullname,
         phoneNumber,
-      }
-      console.log("userData",userData)
-      const response = await axios.post('http://localhost:5000/api/v1/users/registerUser', userData,
-      {
-        headers: {
-            'Content-Type': 'application/json',
-              
-        },
-        withCredentials: true,
-    });
-    
-      console.log("response",response);
-      
-
+      };
+  
+      const response = await axios.post(
+        "http://localhost:5000/api/v1/users/registerUser",
+        userData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
+  
       if (response.status === 200) {
         alert("User registered successfully");
-        navigate("/home");
-      } else {
-        alert("Failed registering user");
-        console.error(response.data.message);
+        navigate("/HomePage");
       }
     } catch (error) {
-      console.error("Error in signup", error.message);
-      alert(error);
+      if (error.response) {
+        // If user already exists, show message
+        if (error.response.status === 401) {
+          alert(error.response.data.message);
+        } else {
+          alert("Error: " + error.response.data.message);
+        }
+      } else {
+        alert("Something went wrong. Please try again.");
+      }
+      console.error("Error in signup", error);
     }
   };
+  
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-500">

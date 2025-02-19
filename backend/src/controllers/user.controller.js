@@ -1,6 +1,39 @@
 import { asyncHandler } from "../utils/AsyncHandler.js";
 import { User } from "../models/User.model.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
+import jwt from "jsonwebtoken";
+
+const generateAccessAndRefereshTokens = async(userId) =>{
+    try {
+        const user = await User.findById(userId)
+        if (!user) {
+            console.log("User not found");
+            return
+        }
+        const accessToken = user.generateAccessToken()
+        if (!accessToken) {
+            console.log("Access token not generated");
+            return 
+        }
+        const refreshToken = user.generateRefreshToken()
+
+        if (!refreshToken) {
+            console.log("Refresh token not generated");
+            return
+        }
+
+        console.log(accessToken, refreshToken, user._id);
+
+        user.refreshToken = refreshToken
+        await user.save({ validateBeforeSave: false })
+
+        return {accessToken, refreshToken}
+
+
+    } catch (error) {
+        console.error("Error generating access and refresh tokens:", error);
+    }
+}
 
 const registerUser = asyncHandler(async (req, res, next) => {
     const {email, fullname, password, phoneNumber} = req.body
@@ -16,6 +49,7 @@ const registerUser = asyncHandler(async (req, res, next) => {
     })
 
     if (existedUser) {
+        console.log(existedUser);
         return res.status(401).send({message: "USER WITH THIS EMAIL OR MOBILE NUMBER EXIST"})
     }
 
@@ -25,6 +59,8 @@ const registerUser = asyncHandler(async (req, res, next) => {
         password,
         phoneNumber,
     });
+
+    console.log(newUser);
     
     await newUser.save();
 
@@ -37,22 +73,16 @@ const registerUser = asyncHandler(async (req, res, next) => {
 })
 
 const loginUser = asyncHandler(async (req, res) => {
-    const { email, password, phoneNumber } = req.body;
+    const { email, password } = req.body;
 
     if ([email, password].some((field) => field.trim() === "")) {
         return res.status(400).send({ message: "EMAIL AND PHONE NUMBER ARE REQUIRED" });
     }
 
-    const checkUser = await User.findOne({
-        $or: [{ email }, { phoneNumber }]
-    });
+    const checkUser = await User.findOne({email});
 
     if (!checkUser) {
         return res.status(404).send({ message: "USER DOES NOT EXIST" });
-    }
-
-    if (checkUser.email !== email || checkUser.phoneNumber !== phoneNumber) {
-        return res.status(400).send({ message: "EMAIL AND PHONE NUMBER DO NOT MATCH" });
     }
 
     const isPasswordCorrect = await checkUser.isPasswordCorrect(password);
@@ -60,15 +90,27 @@ const loginUser = asyncHandler(async (req, res) => {
     if (!isPasswordCorrect) {
         return res.status(401).send({ message: "INVALID PASSWORD" });
     }
-
+    const { accessToken, refreshToken } = await generateAccessAndRefereshTokens(checkUser._id);
     const loggedInUser = await User.findById(checkUser._id).select("-password");
 
-    res.status(200).send({
-        message: "USER LOGGED IN SUCCESSFULLY",
-        data: {
-            user: loggedInUser
-        }
+    console.log(accessToken, refreshToken, loggedInUser);
+
+    res.cookie("accessToken", accessToken, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production", // Use HTTPS in production
     });
+    res.cookie("refreshToken", refreshToken, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+    });
+    
+
+    return res.status(200).send({
+        message: "USER LOGGED IN",
+        user: loggedInUser,
+        accessToken,
+        refreshToken
+    })
 });
 
 
@@ -94,4 +136,4 @@ const uploadAvatar = asyncHandler(async (req, res) => {
 });
 
 
-export {registerUser, loginUser, uploadAvatar}
+export {registerUser, loginUser, uploadAvatar, generateAccessAndRefereshTokens}

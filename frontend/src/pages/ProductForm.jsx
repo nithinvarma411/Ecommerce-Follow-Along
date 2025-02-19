@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 
-const ProductForm = () => {
+const ProductForm = ({ onProductCreated }) => {
   const initialFormState = {
     image: null,
     title: "",
@@ -49,7 +49,7 @@ const ProductForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     const data = new FormData();
     data.append("image", formData.image);
     data.append("name", formData.title);
@@ -60,14 +60,19 @@ const ProductForm = () => {
 
     try {
       const res = await axios.post('http://localhost:5000/api/v1/products/createProduct', data, {
-        withCredentials: true,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
       });
-      
+
       console.log("Product created:", res.data);
       alert("Product created successfully!");
       setFormData(initialFormState);
       setNewSize("");
-      
+
+      if (onProductCreated) {
+        onProductCreated(res.data);
+      }
     } catch (error) {
       console.error("Error submitting form:", error.response ? error.response.data : error);
     }

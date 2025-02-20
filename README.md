@@ -116,3 +116,11 @@ In this session i have covered:
 - added add to cart button
 - created routes for displaying product data
 - connected backend to frontend for displaying product data in frontend
+
+## Milestone 17: created a new page which will display cart data
+
+In this session i have covered:
+- Created a new page which will display cart data
+- created routes for displaying cart data
+- connected backend to frontend for displaying cart data in frontend
+- created controller and model for cart data

@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser'
 import connectDB from './db/db.js'
 import userRoutes from './routes/user.routes.js'
 import productRoutes from './routes/product.routes.js'
+import cartRoutes from './routes/cart.routes.js'
 import { verifyJWT } from './middlewares/auth.middleware.js'
 
 dotenv.config({path: './.env'});
@@ -33,3 +34,4 @@ app.use(cors(corsoptions));
 
 app.use('/api/v1/users', userRoutes)
 app.use('/api/v1/products', verifyJWT, productRoutes)
+app.use('/api/v1/cart', verifyJWT, cartRoutes)

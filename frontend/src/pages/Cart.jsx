@@ -17,6 +17,7 @@ function Cart() {
         });
         setCart(data.cart);
       } catch (error) {
+        console.log(error);
         console.error("Error fetching cart:", error);
       }
     };

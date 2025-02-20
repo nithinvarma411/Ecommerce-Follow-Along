@@ -109,26 +109,34 @@ In this session i have covered:
 - connect frontend and backend for displaying products
 - Improved css for home page
 
-## Milestone 16: created a new page which will display product data
+## Milestone 16: Created a new page which will display product data
 
 In this session i have covered:
 - Created a new page which will display product data
-- added add to cart button
-- created routes for displaying product data
-- connected backend to frontend for displaying product data in frontend
+- Added add to cart button
+- Created routes for displaying product data
+- Connected backend to frontend for displaying product data in frontend
 
-## Milestone 17: add to cart functionality added
+## Milestone 17: Add to cart functionality added
 
 In this session i have covered:
 - Created an add to cart button and added functionality to it
-- created routes for storing cart data in backend
-- connected backend to frontend for storing cart data in database
-- created controller and model for cart data
+- Created routes for storing cart data in backend
+- Connected backend to frontend for storing cart data in database
+- Created controller and model for cart data
 
-## Milestone 18: displayed the products added to the cart
+## Milestone 18: Displayed the products added to the cart
 
 In this session i have covered:
 - Created a new page which will display the products added to the cart
-- created routes for displaying the products added to the cart
-- connected backend to frontend for displaying the products added to the cart
-- created a route in frontend for displaying the products added in cart
+- Created routes for displaying the products added to the cart
+- Connected backend to frontend for displaying the products added to the cart
+- Created a route in frontend for displaying the products added in cart
+
+## Milestone 19: Added + and - button to increase and decrease the quantity of the products added to the cart
+
+In this session i have covered:
+- Created + and - buttons to increase and decrease the quantity of the products added to the cart
+- Created routes for increasing and decreasing the quantity of the products added to the cart
+- Connected backend to frontend for increasing and decreasing the quantity of the products added to the cart
+- Saved the changed quantity of the products in the database

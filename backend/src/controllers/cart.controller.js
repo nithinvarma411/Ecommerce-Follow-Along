@@ -41,4 +41,31 @@ const getCart = asyncHandler(async (req, res) => {
     res.status(200).json({ message: "Cart found", cart });
 });
 
-export { addToCart, getCart };
+const updateCartQuantity = asyncHandler(async (req, res) => {
+    const { productId } = req.params;
+    const { size, delta } = req.body;
+    const userId = req.user._id;
+  
+    const cart = await Cart.findOne({ user: userId });
+    if (!cart) {
+      return res.status(404).json({ message: "Cart not found" });
+    }
+  
+    const productIndex = cart.products.findIndex(
+      (item) => item.product.toString() === productId && item.size === size
+    );
+  
+    if (productIndex === -1) {
+      return res.status(404).json({ message: "Product not found in cart" });
+    }
+  
+    cart.products[productIndex].quantity += delta;
+    if (cart.products[productIndex].quantity < 1) {
+      cart.products[productIndex].quantity = 1;
+    }
+  
+    await cart.save();
+    res.status(200).json({ message: "Cart updated", cart });
+  });
+  
+export { addToCart, getCart, updateCartQuantity };

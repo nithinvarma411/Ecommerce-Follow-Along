@@ -17,13 +17,38 @@ function Cart() {
         });
         setCart(data.cart);
       } catch (error) {
-        console.log(error);
         console.error("Error fetching cart:", error);
       }
     };
 
     fetchCart();
   }, []);
+
+  const updateQuantity = async (index, delta) => {
+    const updatedCart = { ...cart };
+    const productItem = updatedCart.products[index];
+    const token = localStorage.getItem("accessToken");
+  
+    try {
+      await axios.put(
+        `http://localhost:5000/api/v1/cart/update/${productItem.product._id}`,
+        { size: productItem.size, delta },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+          withCredentials: true,
+        }
+      );
+  
+      productItem.quantity += delta;
+      if (productItem.quantity < 1) {
+        productItem.quantity = 1;
+      }
+      setCart(updatedCart);
+    } catch (error) {
+      console.error("Error updating cart quantity:", error);
+    }
+  };
+  
 
   return (
     <div>
@@ -42,9 +67,13 @@ function Cart() {
                 <h3 className="text-lg font-bold">{product.name}</h3>
                 <p className="text-sm text-gray-600">{product.description}</p>
                 <p className="text-sm">Size: {product.size}</p>
-                <p className="text-sm">Quantity: {quantity}</p>
-                <p className="text-sm font-bold">
-                  Price: ${product.discountPrice} x {quantity} = ${product.discountPrice * quantity}
+                <div className="flex items-center mt-2">
+                  <button onClick={() => updateQuantity(index, -1)} className="px-2 py-1 bg-red-500 text-white rounded">-</button>
+                  <span className="mx-2">{quantity}</span>
+                  <button onClick={() => updateQuantity(index, 1)} className="px-2 py-1 bg-green-500 text-white rounded">+</button>
+                </div>
+                <p className="text-sm font-bold mt-2">
+                  Price: {product.discountPrice} x {quantity} = INR {product.discountPrice * quantity}
                 </p>
               </div>
             </div>

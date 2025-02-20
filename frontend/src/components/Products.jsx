@@ -185,10 +185,10 @@ function Products({
           <h2 className="text-lg font-bold">{name}</h2>
           <p className="text-base opacity-50 my-2">{description}</p>
           <p className="text-lg font-bold my-2">
-            Original Price: ${actualPrice}
+            Original Price: INR {actualPrice}
           </p>
           <p className="text-lg font-bold my-2">
-            Selling Price: ${discountPrice}
+            Selling Price: INR {discountPrice}
           </p>
           <div className="my-2">
             <label>Select Size:</label>

@@ -153,6 +153,13 @@ In this session i have covered:
 
 In this session i have covered:
 - Created a form for adding address
-- Created routes and controller for adding address in backend
-- Connected backend to frontend for adding address
+- Created a button to add address
 - Created a route in frontend for adding address
+
+## Milestone 22: Saved the address in user profile in database
+
+In this session i have covered:
+- Saved the address in user profile in database
+- Connected backend to frontend for saving address in database
+- Created routes and controller for saving address in database in backend
+- Created a route in frontend for saving address

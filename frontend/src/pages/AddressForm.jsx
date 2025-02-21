@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
 const AddressForm = () => {
+  const navigate = useNavigate();
   const [address, setAddress] = useState({
     country: '',
     city: '',
@@ -31,6 +33,7 @@ const AddressForm = () => {
       });
       console.log('Address added:', response.data);
       alert('Address added successfully!');
+      navigate('/Profile');
     } catch (error) {
       console.error('Error adding address:', error);
       alert('Error adding address. Please try again.');

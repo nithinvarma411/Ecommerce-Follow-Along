@@ -115,7 +115,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
 
 const uploadAvatar = asyncHandler(async (req, res) => {
-    const userId = req.params.id;
+    const userId = req.user._id;
     const avatarFile = req.file?.path;
   
     if (!avatarFile) {
@@ -135,5 +135,21 @@ const uploadAvatar = asyncHandler(async (req, res) => {
     res.status(200).json({ message: "Avatar uploaded successfully.", avatar: avatarUrl });
 });
 
+const uploadAdress = asyncHandler(async (req, res) => {
+    const {address} = req.body;
+    console.log(address);
+  
+    const user = await User.findById(req.user._id);
+    console.log(user);
+    if (!user) {
+      return res.status(404).json({ message: "User not found." });
+    }
+  
+    user.addresses = address;
+    await user.save();
+  
+    res.status(200).json({ message: "Address updated successfully." });
+  });
+  
 
-export {registerUser, loginUser, uploadAvatar, generateAccessAndRefereshTokens}
+export {registerUser, loginUser, uploadAvatar, generateAccessAndRefereshTokens, uploadAdress}

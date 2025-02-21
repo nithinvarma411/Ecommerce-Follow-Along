@@ -4,7 +4,9 @@ import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import connectDB from './db/db.js'
 import userRoutes from './routes/user.routes.js'
+import profileRoutes from './routes/profile.routes.js'
 import productRoutes from './routes/product.routes.js'
+import addressRoutes from './routes/address.routes.js'
 import cartRoutes from './routes/cart.routes.js'
 import { verifyJWT } from './middlewares/auth.middleware.js'
 
@@ -35,3 +37,5 @@ app.use(cors(corsoptions));
 app.use('/api/v1/users', userRoutes)
 app.use('/api/v1/products', verifyJWT, productRoutes)
 app.use('/api/v1/cart', verifyJWT, cartRoutes)
+app.use('/api/v1', verifyJWT, addressRoutes)
+app.use('/api/v1/profile', verifyJWT, profileRoutes)

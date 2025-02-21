@@ -140,3 +140,11 @@ In this session i have covered:
 - Created routes for increasing and decreasing the quantity of the products added to the cart
 - Connected backend to frontend for increasing and decreasing the quantity of the products added to the cart
 - Saved the changed quantity of the products in the database
+
+## Milestone: Created a profile page
+
+In this session i have covered:
+- Created a profile page
+- Created routes and controller for profile page in backend
+- Connected backend to frontend for profile page
+- Created a route in frontend for profile page

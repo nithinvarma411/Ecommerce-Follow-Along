@@ -171,3 +171,11 @@ In this session i have covered:
 - Created a select address page where i displayed all the address and ask to select delivery address
 - Created a schema for storing orders details
 - Created a backend endpoint that will send all the addresses of the user
+
+## Milestone 24: Created an order confirmation page
+
+In this session i have covered:
+- Displayed all the products user is ordering
+- Displayed the address user selected to deliver
+- Displayed the total value of the cart
+- Created an place order button at the bottom

@@ -18,7 +18,6 @@ function SelectAddress() {
           headers: { Authorization: `Bearer ${token}` },
         });
 
-        // Flatten address1 and address2 into separate selectable addresses
         const formattedAddresses = data.addresses.flatMap((address) => [
           { ...address, fullAddress: address.address1, id: address._id + "-1" },
           address.address2 ? { ...address, fullAddress: address.address2, id: address._id + "-2" } : null,
@@ -38,8 +37,12 @@ function SelectAddress() {
       alert("Please select an address.");
       return;
     }
-    navigate("/order-summary", { state: { selectedAddress } });
+    
+    const selectedAddressDetails = addresses.find(address => address.id === selectedAddress);
+  
+    navigate("/order-summary", { state: { selectedAddress: selectedAddressDetails } });
   };
+  
 
   return (
     <div >

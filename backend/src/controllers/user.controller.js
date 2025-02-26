@@ -150,6 +150,16 @@ const uploadAdress = asyncHandler(async (req, res) => {
   
     res.status(200).json({ message: "Address updated successfully." });
   });
+
+  const getUserAddresses = async (req, res) => {
+    try {
+      const user = await User.findById(req.user._id);
+      res.json({ addresses: user.addresses });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch addresses" });
+    }
+  };
+  
   
 
-export {registerUser, loginUser, uploadAvatar, generateAccessAndRefereshTokens, uploadAdress}
+export {registerUser, loginUser, uploadAvatar, generateAccessAndRefereshTokens, uploadAdress, getUserAddresses}

@@ -51,7 +51,6 @@ function Signup() {
       }
     } catch (error) {
       if (error.response) {
-        // If user already exists, show message
         if (error.response.status === 401) {
           alert(error.response.data.message);
         } else {

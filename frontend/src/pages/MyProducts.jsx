@@ -23,7 +23,7 @@ function MyProducts() {
         const res = await axios.get("http://localhost:5000/api/v1/products/myProducts", {
           headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`, // Add the token here
+            "Authorization": `Bearer ${token}`,
           },
         });
 

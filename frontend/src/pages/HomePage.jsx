@@ -12,7 +12,7 @@ const HomePage = () => {
     useEffect(() => {
       const fetchProducts = async () => {
         try {
-          const token = localStorage.getItem("accessToken"); // or wherever you store it
+          const token = localStorage.getItem("accessToken"); 
           const response = await axios.get(
             "http://localhost:5000/api/v1/products/getAllProducts",
             {
@@ -36,11 +36,9 @@ const HomePage = () => {
 
     return (
     <div className="bg-white text-gray-900">
-      {/* Navbar */}
       
       <Navbar/>
       <Pic/>
-      {/* Featured Products Section */}
       <section className="container mx-auto py-12 px-4">
         <h2 className="text-3xl font-bold text-center mb-8">Featured Shoes</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

@@ -16,15 +16,13 @@ function Login() {
       });
 
       console.log("Login successful:", res.data);
-      
-      // Store token in localStorage for session persistence
+
       localStorage.setItem("accessToken", res.data.accessToken);
       localStorage.setItem("refreshToken", res.data.refreshToken);
 
       setLoggedInUser(true);
       alert("Login successful!");
 
-      // Redirect to dashboard (change path as needed)
       window.location.href = "/HomePage";
 
     } catch (error) {
@@ -60,7 +58,7 @@ function Login() {
               className="border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none"
               id="password"
               type="password"
-              placeholder="******************"
+              placeholder="***********"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required

@@ -163,3 +163,11 @@ In this session i have covered:
 - Connected backend to frontend for saving address in database
 - Created routes and controller for saving address in database in backend
 - Created a route in frontend for saving address
+
+## Milestone 23: Created page for selecting the delivery address
+
+In this session i have covered:
+- Added an button inside cart called "Place order"
+- Created a select address page where i displayed all the address and ask to select delivery address
+- Created a schema for storing orders details
+- Created a backend endpoint that will send all the addresses of the user

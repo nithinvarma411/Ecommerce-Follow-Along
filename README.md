@@ -186,4 +186,12 @@ In this session i have covered:
 - Created a model, controller for placing order
 - Created a order confirmation button
 - created a route for saving order details in backend
-- connected backend with frontend
+- Connected backend with frontend
+
+## Created a page for displaying order details of the user
+
+In this session i have covered:
+- Created a controller and route for displaying order data of the user
+- Created a page for displaying order details
+- Connected frontend and backend
+- Created a frontend route for displaying order details

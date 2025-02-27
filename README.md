@@ -179,3 +179,11 @@ In this session i have covered:
 - Displayed the address user selected to deliver
 - Displayed the total value of the cart
 - Created an place order button at the bottom
+
+##  Milestone 25: Created a backend endpoint for placing order
+
+In this session i have covered:
+- Created a model, controller for placing order
+- Created a order confirmation button
+- created a route for saving order details in backend
+- connected backend with frontend

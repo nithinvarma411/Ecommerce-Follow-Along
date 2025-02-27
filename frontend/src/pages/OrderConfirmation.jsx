@@ -34,6 +34,32 @@ function OrderConfirmation() {
     }, 0);
   };
 
+  const handlePlaceOrder = async () => {
+    try {
+      const token = localStorage.getItem("accessToken");
+      const orderData = {
+        products: cart.products.map(({ product, quantity }) => ({
+          product: product._id,
+          quantity,
+        })),
+        address: selectedAddress.fullAddress,
+        price: getTotalPrice(),
+        quantity: cart.products.reduce((sum, item) => sum + item.quantity, 0),
+      };
+
+      await axios.post("http://localhost:5000/api/v1/orders/placeOrder", orderData, {
+        headers: { Authorization: `Bearer ${token}` },
+        withCredentials: true,
+      });
+
+      alert("Order placed successfully!");
+      navigate("/orders");
+    } catch (error) {
+      console.error("Error placing order:", error);
+      alert("Failed to place order.");
+    }
+  };
+
   return (
     <div>
       <Navbar />
@@ -62,7 +88,7 @@ function OrderConfirmation() {
             <div className="mt-4">
               <h3 className="text-lg font-bold">Total Price: INR {getTotalPrice()}</h3>
               <button
-                onClick={() => navigate("/place-order")}
+                onClick={handlePlaceOrder}
                 className="bg-blue-500 text-white px-4 py-2 rounded mt-4"
               >
                 Place Order

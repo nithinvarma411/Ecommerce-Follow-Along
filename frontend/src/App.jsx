@@ -5,6 +5,7 @@ import HomePage from './pages/HomePage';
 import Profile from './pages/Profile';
 import AddressForm from './pages/AddressForm';
 import SelectAddress from './pages/SelectAddress';
+import Orders from './pages/Orders';
 import OrderConfirmation from './pages/OrderConfirmation';
 import Cart from './pages/Cart';
 import { Route, Routes } from 'react-router-dom';
@@ -24,6 +25,7 @@ function App() {
       <Route path="/Profile" element={<Profile />} />
       <Route path='/select-address' element={<SelectAddress/>} />
       <Route path='/order-summary' element={<OrderConfirmation/>} />
+      <Route path="/orders" element={<Orders />} />
     </Routes>
     </>
   )

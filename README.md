@@ -200,3 +200,11 @@ In this session i have covered:
 - Created a page for displaying the order details
 - Connected frontend and backend
 - Created a frontend route for displaying order details
+
+## Milestone 28: Created a cancel order button
+
+In this session i have covered:
+- Created a button for cancelling the order
+- Created a backend controller for cancelling the order
+- Created a backend router for cancelling the order
+- Connected backend with frontend

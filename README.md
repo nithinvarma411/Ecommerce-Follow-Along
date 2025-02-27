@@ -188,10 +188,15 @@ In this session i have covered:
 - created a route for saving order details in backend
 - Connected backend with frontend
 
-## Created a page for displaying order details of the user
+## Milestone 26: Created a backend endpoint for sending order details
 
 In this session i have covered:
-- Created a controller and route for displaying order data of the user
-- Created a page for displaying order details
+- Created a controller for displaying order data of the user
+- Created a route for displaying order data of the user
+
+## Milestone 27: Created a page for displaying the order details
+
+In this session i have covered:
+- Created a page for displaying the order details
 - Connected frontend and backend
 - Created a frontend route for displaying order details

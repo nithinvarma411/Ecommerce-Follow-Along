@@ -14,7 +14,6 @@ const placeOrder = async(req, res) => {
     }
 }
 
-
 const getOrders = async (req, res) => {
     try {
         const userId = req.user.id;

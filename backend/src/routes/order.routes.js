@@ -3,7 +3,6 @@ import {Router} from "express";
 
 const router = Router()
 
-
 router.route("/getOrders").get(getOrders)
 router.route("/placeOrder").post(placeOrder)
 

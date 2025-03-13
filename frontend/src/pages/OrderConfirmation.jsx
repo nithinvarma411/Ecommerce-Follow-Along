@@ -4,9 +4,11 @@ import Navbar from "../components/Navbar";
 import Pic from "../components/Pic";
 import Footer from "../components/Footer";
 import axios from "axios";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 function OrderConfirmation() {
   const [cart, setCart] = useState(null);
+  const [paymentMethod, setPaymentMethod] = useState("COD");
   const location = useLocation();
   const navigate = useNavigate();
   const selectedAddress = location.state?.selectedAddress;
@@ -45,6 +47,7 @@ function OrderConfirmation() {
         address: selectedAddress.fullAddress,
         price: getTotalPrice(),
         quantity: cart.products.reduce((sum, item) => sum + item.quantity, 0),
+        paymentMethod,
       };
 
       await axios.post("http://localhost:5000/api/v1/orders/placeOrder", orderData, {
@@ -87,13 +90,62 @@ function OrderConfirmation() {
             </div>
             <div className="mt-4">
               <h3 className="text-lg font-bold">Total Price: INR {getTotalPrice()}</h3>
+            </div>
+            <div className="mt-4">
+              <h3 className="text-lg font-bold">Payment Method</h3>
+              <label className="mr-4">
+                <input
+                  type="radio"
+                  name="payment"
+                  value="COD"
+                  checked={paymentMethod === "COD"}
+                  onChange={() => setPaymentMethod("COD")}
+                />
+                Cash on Delivery (COD)
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="payment"
+                  value="Online"
+                  checked={paymentMethod === "Online"}
+                  onChange={() => setPaymentMethod("Online")}
+                />
+                Online Payment
+              </label>
+            </div>
+            {paymentMethod === "Online" && (
+              <div className="mt-4">
+                <PayPalScriptProvider options={{ "client-id": import.meta.env.VITE_PAYPAL_CLIENT_ID }}>
+                  <PayPalButtons
+                    createOrder={(data, actions) => {
+                      return actions.order.create({
+                        purchase_units: [
+                          {
+                            amount: {
+                              value: getTotalPrice().toFixed(2),
+                            },
+                          },
+                        ],
+                      });
+                    }}
+                    onApprove={(data, actions) => {
+                      return actions.order.capture().then(() => {
+                        handlePlaceOrder();
+                      });
+                    }}
+                  />
+                </PayPalScriptProvider>
+              </div>
+            )}
+            {paymentMethod === "COD" && (
               <button
                 onClick={handlePlaceOrder}
                 className="bg-blue-500 text-white px-4 py-2 rounded mt-4"
               >
                 Place Order
               </button>
-            </div>
+            )}
           </div>
         ) : (
           <p>No products found in your cart.</p>

@@ -208,3 +208,11 @@ In this session i have covered:
 - Created a backend controller for cancelling the order
 - Created a backend router for cancelling the order
 - Connected backend with frontend
+
+## Milestone 29: Created a button to select online payment
+
+In this session i have covered:
+- Created an account in paypal
+- used paypal API key
+- Created two options (COD, ONLINE PAYMENT)
+- Created a radio button to select paypal

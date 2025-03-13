@@ -209,10 +209,17 @@ In this session i have covered:
 - Created a backend router for cancelling the order
 - Connected backend with frontend
 
-## Milestone 29: Created a button to select online payment
+## Milestone 29: Created an Account in paypal
 
 In this session i have covered:
 - Created an account in paypal
 - used paypal API key
 - Created two options (COD, ONLINE PAYMENT)
 - Created a radio button to select paypal
+
+## Milestone 30: Created a button to pay
+
+In this session i have covered:
+- Installed the dependency react-paypal-js
+- Used the component PayPalScriptProvider for showing paypal option
+- When click on online payment then this option will bw displayed

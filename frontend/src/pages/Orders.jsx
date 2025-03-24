@@ -11,7 +11,7 @@ function Orders() {
     const fetchOrders = async () => {
       try {
         const token = localStorage.getItem("accessToken");
-        const { data } = await axios.get("http://localhost:5000/api/v1/orders/getOrders", {
+        const { data } = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/orders/getOrders`, {
           headers: { Authorization: `Bearer ${token}` },
           withCredentials: true,
         });
@@ -30,7 +30,7 @@ function Orders() {
 
     try {
       const token = localStorage.getItem("accessToken");
-      await axios.delete(`http://localhost:5000/api/v1/orders/cancel/${orderId}`, {
+      await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/v1/orders/cancel/${orderId}`, {
         headers: { Authorization: `Bearer ${token}` },
         withCredentials: true,
       });

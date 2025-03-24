@@ -25,7 +25,7 @@ const AddressForm = () => {
     const token = localStorage.getItem('accessToken');
 
     try {
-      const response = await axios.put('http://localhost:5000/api/v1/uploadAdress', { address }, {
+      const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/v1/uploadAdress`, { address }, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`

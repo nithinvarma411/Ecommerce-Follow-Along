@@ -14,7 +14,7 @@ const HomePage = () => {
         try {
           const token = localStorage.getItem("accessToken"); 
           const response = await axios.get(
-            "http://localhost:5000/api/v1/products/getAllProducts",
+            `${import.meta.env.VITE_BACKEND_URL}/api/v1/products/getAllProducts`,
             {
               headers: { Authorization: `Bearer ${token}` },
               withCredentials: true,

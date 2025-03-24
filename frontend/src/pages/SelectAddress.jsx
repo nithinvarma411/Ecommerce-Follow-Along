@@ -14,7 +14,7 @@ function SelectAddress() {
     const fetchAddresses = async () => {
       try {
         const token = localStorage.getItem("accessToken");
-        const { data } = await axios.get("http://localhost:5000/api/v1/addresses", {
+        const { data } = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/addresses`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 

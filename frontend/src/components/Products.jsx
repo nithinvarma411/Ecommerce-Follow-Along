@@ -27,7 +27,7 @@ function Products({
     try {
       const token = localStorage.getItem("accessToken");
       await axios.put(
-        `http://localhost:5000/api/v1/products/edit/${_id}`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/v1/products/edit/${_id}`,
         editedProduct,
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -49,7 +49,7 @@ function Products({
     try {
       const token = localStorage.getItem("accessToken");
       await axios.delete(
-        `http://localhost:5000/api/v1/products/delete/${_id}`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/v1/products/delete/${_id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
           withCredentials: true,
@@ -73,7 +73,7 @@ function Products({
     try {
       const token = localStorage.getItem("accessToken");
       await axios.post(
-        `http://localhost:5000/api/v1/cart/add/${_id}`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/v1/cart/add/${_id}`,
         { size: selectedSize, quantity },
         {
           headers: { Authorization: `Bearer ${token}` },

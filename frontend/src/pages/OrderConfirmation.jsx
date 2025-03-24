@@ -17,7 +17,7 @@ function OrderConfirmation() {
     const fetchCart = async () => {
       try {
         const token = localStorage.getItem("accessToken");
-        const { data } = await axios.get("http://localhost:5000/api/v1/cart/getCart", {
+        const { data } = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/cart/getCart`, {
           headers: { Authorization: `Bearer ${token}` },
           withCredentials: true,
         });
@@ -50,7 +50,7 @@ function OrderConfirmation() {
         paymentMethod,
       };
 
-      await axios.post("http://localhost:5000/api/v1/orders/placeOrder", orderData, {
+      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/v1/orders/placeOrder`, orderData, {
         headers: { Authorization: `Bearer ${token}` },
         withCredentials: true,
       });

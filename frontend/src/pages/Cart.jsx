@@ -14,7 +14,7 @@ function Cart() {
       try {
         const token = localStorage.getItem("accessToken");
         const { data } = await axios.get(
-          "http://localhost:5000/api/v1/cart/getCart",
+            `${import.meta.env.VITE_BACKEND_URL}/api/v1/cart/getCart`,
           {
             headers: { Authorization: `Bearer ${token}` },
             withCredentials: true,
@@ -36,7 +36,7 @@ function Cart() {
 
     try {
       await axios.put(
-        `http://localhost:5000/api/v1/cart/update/${productItem.product._id}`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/v1/cart/update/${productItem.product._id}`,
         { size: productItem.size, delta },
         {
           headers: { Authorization: `Bearer ${token}` },

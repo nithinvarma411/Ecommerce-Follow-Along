@@ -29,7 +29,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 const corsoptions = {
-    origin: 'http://localhost:5173',
+    origin: `${process.env.ORIGIN}`,
     credentials: true,
     optionsSuccessStatus: 200
 };

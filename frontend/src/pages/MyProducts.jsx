@@ -20,7 +20,7 @@ function MyProducts() {
           return;
         }
 
-        const res = await axios.get("http://localhost:5000/api/v1/products/myProducts", {
+        const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/products/myProducts`, {
           headers: {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${token}`,
